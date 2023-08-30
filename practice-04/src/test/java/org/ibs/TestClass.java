@@ -13,7 +13,7 @@ public class TestClass  extends BDConnection {
 
     private static JdbcTemplate jdbcTemplateObject= new JdbcTemplate(dataSource);
     /**
-     * Товар который планиуем добавлять:
+     * Товар который планируем добавлять:
      */
     Metod.Food testFood = new Metod.Food(0, "Citrus limon(☼) _Azerbaijan 5HPH+PPC, Unnamed Road, Pərvanlı", "FRUIT", 0);
 
@@ -42,7 +42,7 @@ public class TestClass  extends BDConnection {
         rowsStart =foodMaxId.get(0).foodId();
 
         /**
-         *  Проверка отсутсвие записи в таблице FOOD с характеристиками  testFood
+         *  Проверка отсутствие записи в таблице FOOD с характеристиками  testFood
          */
         List<Metod.Food> foodTest= Metod.getFoodTest();
         int foodTestSize= foodTest.size();
@@ -54,16 +54,16 @@ public class TestClass  extends BDConnection {
         AddFood addFood = new AddFood();
         addFood.addFoodForm();
         /**
-         * получение данных добавленной завписи таблицы
+         * получение данных добавленной записи таблицы
          */
 
         List<Metod.Food> foodTestRes= Metod.getFoodTest();
         rowsEnd = foodTestRes.get(0).foodId();
         /**
-         * проверка: значение ID добавленного товата на 1 больше (добавился новый товар, а не изменился существующий)
+         * проверка: значение ID добавленного товара на 1 больше (добавился новый товар, а не изменился существующий)
          */
         Assertions.assertTrue(rowsEnd-rowsStart==1,"id добавленного не изменилось 1 - товар не добавлен");
-        //проверка соответсвия данных по столбцам
+        //проверка соответствия данных по столбцам
         Assertions.assertAll("проверка полей добавленного товара",
                 ()-> foodTestRes.get(0).foodName().equals(testFood.foodName()),
                 ()-> foodTestRes.get(0).foodType().equals(testFood.foodType()),
